@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Web</title>
+<meta name="google-signin-client_id" content="381937643256-r4dqk1eqmab7c167mqau6enteg7e38kd.apps.googleusercontent.com">
+<!-- Bootstrap core CSS -->
+
+
+<!-- Custom styles for this template -->
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet"  href="{% static 'dashboard/css/product.css'%}">
+<link rel="stylesheet"  href="{% static 'dashboard/css/signin.css'%}">
+
+<!-- Script for cross-site cookies-->
+
+<!-- Script for google-signin-->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body>
+ <nav class="site-header py-1">
+  <div class="container d-flex flex-column flex-md-row justify-content-between">
+    
+
+    <a class="py-2 d-none d-md-inline-block" href="/">Dashboard</a>
+   
+    <div class="nav-masthead">
+     <a class="btn btn-outline-secondary" href="/Dashboard/login">Sign In</a>
+      <a class="btn btn-outline-secondary" href="/Dashboard/register">Sign up</a>
+      </div>
+  </div>
+</nav>
+
+<div class="position-relative overflow-hidden p-3 p-md-1 m-md-3 text-center bg-dark">
+  <div class="col-md-5 mx-auto">
+    <h1 class="display-4 titleposition">Web Dashboard</h1>
+ </div>
+  </div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-dark mr-md-3 px-md-3 text-center text-white overflow-hidden">
+    <div class="my-3 py-3">
+ 
+
+      <form class="form-signin" method="post">
+
+        <h3 class="form-signin-heading"> Dashboard Sign in</h3>
+        <h5>Sign in to view your dashboard</h5>
+        
+        {% csrf_token %}
+        
+
+        <h4>Enter Email:</h4>
+        <label for="inputEmail" class="sr-only">Email address</label>
+
+        <input name= "username"  id="inputEmail" class="form-control" placeholder="*Email address/UserName" required>
+        <h4>Enter Password:</h4>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name= "password" type="password" id="inputPassword" class="form-control" placeholder="Password" oninvalid="this.setCustomValidity('Please Enter your Password')" oninput="setCustomValidity('')" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+
+        </div>
+        <button class="btn btn-outline-secondary btnpadding" type="submit">Sign in</button> 
+        <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
+        <p><a href="#">I forgot my user ID or password</a></p>
+		
+		  
+      </form>
+
+    </div> <!-- /container -->
+    </div>
+    </div>
+
+  </body>
+</html>
