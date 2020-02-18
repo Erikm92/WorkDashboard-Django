@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from dashboard.forms import RegistrationForm, EditProfileForm
+from dashboard.forms import RegistrationForm, EditProfileForm, userlinksForm
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth.forms import  PasswordChangeForm, UserChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.shortcuts import get_object_or_404
+
 from . models import userlinks
 
 
@@ -41,13 +43,60 @@ def addurl(request):
     else:
         return render(request,'addurl.html')
    
-# need to add an extra column to table to favicon due to the foor loop that loads them all
+
    
 def editurl(request):
 
     linktomain=userlinks.objects.all()
 
     return render(request, 'editurl.html',{'linktomain':linktomain})
+
+def new_post(request):
+    form = userlinksForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        
+    else:
+        form = userlinksForm()
+    context={
+        'form': form,
+    }
+    return render(request,'editlink.html',context)
+
+def edit_url(request, pk):
+    post = get_object_or_404(userlinks,pk=pk)
+
+    if request.method == "POST":
+        form = userlinksForm(request.POST, instance=post)
+
+       
+        if form.is_valid():
+            form.save()
+            return redirect("/Dashboard")
+    else:
+        form = userlinksForm(instance=post)
+    context={
+        'form': form,
+        'post': post,
+    }
+    return render(request,'editlink.html', context)
+
+def delete_url(request, pk):
+    post = get_object_or_404(userlinks, pk=pk)
+
+    if request.method == "POST":
+        form = userlinksForm(request.POST, instance=post)
+        post.delete()
+        return redirect("/Dashboard")
+    else:
+        form = userlinksForm(instance=post)
+    context={
+        'form': form,
+        'post': post,
+    }
+    return render(request,'editlink.html', context)
+
 
 
 def login(request):

@@ -44,42 +44,44 @@
   <div class="bg-dark mr-md-3 px-md-3 text-center text-white overflow-hidden">
     <div class="my-3 py-3">
  
+    {% with url_name=request.resolver_match.url_name %}
+        {% if url_name == 'editinglinks'%}
+            <h2>Edit URL</h2>
+        {% else %}
+            <h2>Delete URL</h2>
+        {% endif %}
+    {% endwith %}
 
 
 <!-- Trigger/Open The Modal -->
+    {% if messages %}
+        {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">X</span></button>
+                </div>
+        {% endfor %}
+    {% else %}
   
-<table class="">
+  <form class="form-addurl" id=""  method="post">
+        {% csrf_token %}
 
-    <thead class="">
-    <tr>
-        <th scope="col">PK</th>
-        <th scope="col">Main URL</th>
-        <th scope="col">Name</th>
-        <th scope="col">Favicon URL</th>
-        <th scope="col">PK</th>
-        <th scope="col">PK</th>
-        <th scope="col">PK</th>
-    </tr>
-    <thead>
-    <tbody>
-    {% for link in linktomain %}
-        <tr>
-            <td>{{link.pk}}</td>
-            <td>{{link.main}}</td>
-            <td>{{link.mainname}}</td>
-            <td>{{link.mainfavicon}}</td>
-            <td>{% if link.seo_title %}Yes{% else %}No{% endif %}</td>
-            <td>{% if link.seo_description %}Yes{% else %}No{% endif %}</td>
-            <td><a href="{% url 'editinglinks' pk=link.pk %}"><button class=""></button></a>Edit</td>
-            <td><a href="{% url 'deletelinks' pk=link.pk %}"><button class=""></button></a>Delete</td>
-        </tr>
-            
-    {% endfor %}
-    </tbody>
+        {% for field in form %}
+            <label>{{field.label_tag}}</label>
+            {{field}}
+        {% endfor%}
+       
+        {% with url_name=request.resolver_match.url_name %}
+        {% if url_name == 'editinglinks'%}
+           <button type="submit">Save</button>
+        {% else %}
+            <button type="submit">Delete</button>
+         {% endif %}
+         {% endwith %}
+        
+          
+        </form>
 
-    </table>
-
-      
+    {% endif %}
     
     </div> <!-- /container -->
     </div>

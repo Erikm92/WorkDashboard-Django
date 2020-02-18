@@ -3,6 +3,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import userlinks
 
+
+
+class userlinksForm(forms.ModelForm):
+    class Meta:
+        model= userlinks
+        fields =['main', 'mainname', 'mainfavicon']
+        widgets = {
+            'main': forms.TextInput(attrs={'class':'form-control'}),
+            'mainname': forms.TextInput(attrs={'class':'form-control'}),
+            'mainfavicon': forms.TextInput(attrs={'class':'form-control'})
+
+        }
+
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
 
@@ -39,9 +52,5 @@ class EditProfileForm(UserChangeForm):
             'password'
         }
         
-class userlinksForm(forms.ModelForm):
-    class Meta:
-        model= userlinks
-        fields =['main', 'mainname']
 
 

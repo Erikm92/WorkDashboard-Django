@@ -20,10 +20,13 @@ urlpatterns = [
 
     url(r'^profile/edit/$', views.edit_profile, name="edit_profile" ),
 
-    url(r'^change-password/$', views.change_password,  name="change_password")
+    url(r'^change-password/$', views.change_password,  name="change_password"),
 
-  
+    url(r'^editlink/$', views.new_post, name="editlink"),
 
+    url(r'^editlinks/(?P<pk>\d+)/$',views.edit_url, name="editinglinks"),
+
+    url(r'^deletelinks/(?P<pk>\d+)/$',views.delete_url, name="deletelinks"),
     
    
     
