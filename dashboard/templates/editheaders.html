@@ -14,7 +14,6 @@
 <link rel="stylesheet"  href="{% static 'dashboard/css/product.css'%}">
 <link rel="stylesheet"  href="{% static 'dashboard/css/dialog.css'%}">
 <script type="text/JavaScript" src="{% static 'dashboard/js/addurl.js'%}"></script> 
-<script type="text/JavaScript" src="{% static 'dashboard/js/changetable.js'%}"></script> 
 
 <!-- Script for cross-site cookies-->
 
@@ -45,44 +44,36 @@
   <div class="bg-dark mr-md-3 px-md-3 text-center text-white overflow-hidden">
     <div class="my-3 py-3">
  
+    
+            <h2>Add Headers/Titles</h2>
+       
+           
+       
 
 
 <!-- Trigger/Open The Modal -->
+    {% if messages %}
+        {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">X</span></button>
+                </div>
+        {% endfor %}
+    {% else %}
   
-        
-
-        <form class="form-addurl" id=""  method="post">
+  <form class="form-addurl" id=""  method="post">
         {% csrf_token %}
-        <div id="dialog-title">Add shortcut</div>
-          <div id="title" class="field-container">
-            <label id="title-field-name" class="field-title" aria-label="Name">Name</label>
-            <div class="input-container">
 
-              <input name="mainname" id="title-field" class="field-input" type="text" autocomplete="off" tabindex="0">
-              <div class="underline"></div>
-            </div>
-          </div>
-          <div id="url" class="field-container">
-            <label id="url-field-name" class="field-title" aria-label="URL">URL</label>
-            <div class="input-container">
-
-              <input name="main" id="url-field" class="field-input" type="text" autocomplete="off" spellcheck="false" dir="ltr" tabindex="0" required="">
-
-              <input type="hidden" id="table" name="table_id">
-
-              <div class="underline"></div>
-            </div>
-            <div id="invalid-url" class="error-msg">Type a valid URL</div>
-          </div>
-          <div class="buttons-container">
-            
-            <span>
-              <button id="cancel" class="paper secondary ripple" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button>
-              <button onclick = gettable() type="submit" class="paper primary ripple" tabindex="0" title="Add shortcut"  aria-label="Add shortcut">Done</button>
-            </span>
-          </div>
+        {% for field in form %}
+            <label>{{field.label_tag}}</label>
+            {{field}}
+        {% endfor%}
+           <button type="submit">Save</button>
+        
+        
           
         </form>
+
+    {% endif %}
     
     </div> <!-- /container -->
     </div>

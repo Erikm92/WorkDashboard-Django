@@ -150,6 +150,15 @@ padding-right: 0%;
 border-radius: 19px 19px 19px 19px;
 
 }
+.column-header
+{
+
+
+margin-top: -2%;
+padding-bottom: 5%; 
+
+
+}
 .column-btn
 {
 float: left;
@@ -193,13 +202,13 @@ padding-bottom: 2%;
  
   border: none;
   cursor: pointer;
-  margin-top: -15px;
+  margin-top: -90px;
   margin-left: 30px;
   width: 25px;
     height: 25px;
   position: absolute;
   border-radius: 35%;
-  background-color: rgba(128,128,128);
+  
 }
 .md-menu:after {
   content: '\22EE';
@@ -207,7 +216,7 @@ padding-bottom: 2%;
     font-weight: 900;
     color: white;
     position: absolute;
-    left: 9px;
-    top: 0px;
+    left: 30px;
+    
     
   }

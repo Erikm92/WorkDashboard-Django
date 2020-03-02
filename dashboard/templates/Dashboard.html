@@ -16,6 +16,10 @@
 <link rel="stylesheet"  href="{% static 'dashboard/css/dialog.css'%}">
 <script> type="text/JavaScript" src="{% static 'dashboard/js/addurl.js'%}"</script> 
 <script> type="text/JavaScript" src="{% static 'dashboard/js/editurls.js'%}"</script> 
+<script> type="text/JavaScript" src="{% static 'dashboard/js/editheaders.js'%}"</script> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
 
 </head>
@@ -26,7 +30,7 @@
 
     <a class="py-2 d-none d-md-inline-block" href="/Dashboard">Dashboard</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+    <a class="py-2 d-none d-md-inline-block" href="/Dashboard/editheaders">Features</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
     <a class="py-2 d-none d-md-inline-block" href="/Dashboard/profile">Profile</a>
     <a class="btn btn-outline-secondary" href="/Dashboard/logout">Logout</a>
@@ -50,27 +54,40 @@
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 mainbox">
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   
-  
-   <h2 class="display-5 paddingfortitle">Hello</h2>
- 
+    <div class="column-header">
+    {% for link in linktoheader %}
+    {% if link.header_id == 'header_1'%}
+      <a href="/Dashboard/editheaders" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+       {% else %}
+        <a href="/Dashboard/editheaders" id="none" target="_blank"><img class="" src="">
+       <h2 class="editable display-5" id="lbl1">Add Title</h2>
+      </a>
+      {% endif %}
+     {% endfor %}
+    </div>
+
+
    <div class="row">
    <div class="entirecolumn">
   
     
     {% for link in linktomain %}
+    {% if link.table_id == "table_1"%}
     <div class="column">
      
       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
-       <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       <p class="textcolor">{{link.mainname}}</p>
-      
+       <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
-     
-    </div>
+      </div>
+      {% else %}
+     {% endif %}
+    
    {% endfor %}
     
     <div class="column-btn">
-      <a href="/Dashboard/addurl" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+      <a href="{% url 'addurl' table_id="table_1" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
       <p class="textcolor">Add More</p></a>
         
     </div>
@@ -80,236 +97,122 @@
     </div>
   </div>
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-      <h2 class="display-5 paddingfortitle">Olive Software</h2>
- 
+  <div class="column-header">
+      <a href="" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">Add Title</h2>
+            
+      </a>
+      
+    </div>
+
+
    <div class="row">
    <div class="entirecolumn">
-   
-    <div class="column">
-     
-      <a href="https://o.essencedigital.com/v2/login" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://o.essencedigital.com">
-      <button class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></button>
-       <p class="textcolor">Olive Prod</p>
-      
-      </a> 
-     
-    </div>
-     <div class="column">
-     
-      <a href="https://o.essencedigital.com/v2/admin/manage" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://o.essencedigital.com">
-       <p class="textcolor">Admin Tool</p>
-      </a> 
-    </div>
-     <div class="column">
-     
-      <a href="https://o.essencedigital.com/admin/dcm" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://o.essencedigital.com">
-       <p class="textcolor">Admin Tool V2</p>
-      </a> 
-    </div>
-   
-    
-    <div class="column">
-       <a href="https://o-demo.essenceglobal.com/v2/" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://o.essencedigital.com">
-       <p class="textcolor">Olive Demo</p>
-       </a> 
-    </div>
-      
-    <div class="column">
-        <a href="https://orv2.2sixty.io/olive/essential-report/" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://o.essencedigital.com"> 
-        <p class="textcolor">Olive Reporting</p>
-        </a>
-    </div>
-    <div class="column">
-      <a href="https://datalab-dev.essenceglobal.com/browse" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://datalab.essenceglobal.com"> 
-      <p class="textcolor">DataLab Dev</p>
-      </a>
-    </div>
-     <div class="column">
-      <a href="https://datalab.essenceglobal.com/browse" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://datalab.essenceglobal.com"> 
-      <p class="textcolor">DataLab</p>
-      </a>
-    </div>
-    <div class="column">
-      <a href="https://datalab.essenceglobal.com/sql" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://datalab.essenceglobal.com"> 
-      <p class="textcolor">SQL Runner</p>
-      </a>
-    </div>
-     <div class="column">
-      <a href="  https://datalab.essenceglobal.com/projects/grt/files/pr_google.model.lkml?line=46" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://datalab.essenceglobal.com"> 
-      <p class="textcolor">Platforms</p>
-      </a>
-    </div>
   
- <div class="column">
-        <a href="https://intern.essencedigital.com/" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://o.essencedigital.com">
-        <p class="textcolor">Olive Intern</p>
-        </a> 
     
-     </div>
-
+    {% for link in linktomain %}
+    {% if link.table_id == "table_2"%}
+    <div class="column">
+     
+      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
+      <p class="textcolor">{{link.mainname}}</p>
+       <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+      </a> 
+      </div>
+      {% else %}
+     {% endif %}
+    
+   {% endfor %}
+    
     <div class="column-btn">
-      <button  class="btn" id="myBtn" onclick="addurl()"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></button>
+       <a href="{% url 'addurl' table_id="table_2" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+      <p class="textcolor">Add More</p></a>
         
     </div>
     
+
     </div>
     </div>
   </div>
-
 
    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     
-     <h2 class="display-5 paddingfortitle">Administrator</h2>
- 
+   <div class="column-header">
+      <a href="" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">Add Title</h2>
+            
+      </a>
+      
+    </div>
+
+
    <div class="row">
    <div class="entirecolumn">
-   
+  
+    
+    {% for link in linktomain %}
+    {% if link.table_id == "table_3"%}
     <div class="column">
      
-      <a href="https://admin.atlassian.com/" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://id.atlassian.com">
-      <p class="textcolor">Jira Admin</p>
+      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
+      <p class="textcolor">{{link.mainname}}</p>
+       <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
-    </div>
-   
+      </div>
+      {% else %}
+     {% endif %}
     
-    <div class="column">
-       <a href="https://authenticate.essenceglobal.com/auth/admin/master/console/#/realms" target="_blank"><img class="iconimage" src="images/kaycloak.png">
-       <p class="textcolor">KeyCloak</p>
-       </a> 
-    </div>
-      
-    <div class="column">
-        <a href="https://o-demo.essenceglobal.com/person" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://o.essencedigital.com"> 
-        <p class="textcolor">Olive User</p>
-        </a>
-    </div>
-    <div class="column">
-      <a href="https://essencedigital.atlassian.net/secure/RapidBoard.jspa?rapidView=280" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/browse/favicon.ico"> 
-      <p class="textcolor">Support Board</p>
-      </a>
-    </div>
-     <div class="column">
-      <a href="https://essencedigital.atlassian.net/secure/RapidBoard.jspa?rapidView=199" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/browse/favicon.ico"> 
-      <p class="textcolor">BAU Board</p>
-      </a>
-    </div>
-     <div class="column">
-        <a href="https://essencedigital.atlassian.net/servicedesk/customer/portals" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/browse/favicon.ico">
-        <p class="textcolor">Help Center</p>
-        </a> 
+   {% endfor %}
     
-     </div>
-    <div class="column">
-        <a href="https://auth.essencedigital.com/" target="_blank"><img class="iconimage" src="https://camry.essencedigital.com/assets/img/omv-logo.png">
-        <p class="textcolor">Camry Auth</p>
-        </a> 
-    </div>
-      <div class="column">
-        <a href="http://scrutineer.net/admin/users" target="_blank"><img class="iconimage" src="http://scrutineer.net/static/scrutineer_logo_only.png">
-        <p class="textcolor">Scrutineer</p>
-        </a> 
-    </div>
-
-    
-       <div class="column">
-        <a href="https://marketingplatform.google.com/about/search-ads-360/" target="_blank"><img class="iconimage" src="https://google.com/favicon.ico">
-        <p class="textcolor">Ads 360</p>
-        </a> 
-    </div>
-
-     
-      <div class="column">
-        <a href="https://governance.2sixty.io" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/favicon.ico">
-        <p class="textcolor">2gp</p>
-        </a> 
-    </div>
-   
-     <div class="column-btn">
-      <button  class="btn" id="myBtn" onclick="addurl()"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></button>
+    <div class="column-btn">
+      <a href="{% url 'addurl' table_id="table_3" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+      <p class="textcolor">Add More</p></a>
         
     </div>
-      
+    
+
     </div>
     </div>
   </div>
-  
-  
-<!--need to create this as a 3 column-->
-  
   
 </div>
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 mainbox">
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   
-      <h2 class="display-5 paddingfortitle">Confluence</h2>
- 
+    <div class="column-header">
+      <a href="" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">Add Title</h2>
+            
+      </a>
+      
+    </div>
+
+
    <div class="row">
    <div class="entirecolumn">
-   
-    <div class="column">
-     
-      <a href="https://essencedigital.atlassian.net/wiki/spaces/O3KB/overview" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/favicon.ico">
-      <p class="textcolor">Olive Base</p>
-      </a> 
-    </div>
-    <div class="column">
-     
-      <a href="https://essencedigital.atlassian.net/wiki/spaces/SUP/overview" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/favicon.ico">
-      <p class="textcolor">Support</p>
-      </a> 
-    </div>
-    <div class="column">
-     
-      <a href="https://essencedigital.atlassian.net/wiki/spaces/O3KB/pages/935461157/Olive+Known+Issues" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/favicon.ico">
-      <p class="textcolor">Olive Issues</p>
-      </a> 
-    </div>
-    <div class="column">
-     
-      <a href="https://essencedigital.atlassian.net/wiki/spaces/DLAKE/pages/915734537/Data+Reloads" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/favicon.ico">
-      <p class="textcolor">DataLake</p>
-      </a> 
-    </div>
-    <div class="column">
-     
-      <a href="https://essencedigital.atlassian.net/wiki/spaces/O3/pages/1737752581/Olive+BE+change+tracker+and+approvals" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/favicon.ico">
-      <p class="textcolor">Olive BE</p>
-      </a> 
-    </div>
-    <div class="column">
-     
-      <a href="https://docs.google.com/document/d/1U7Cbd_OdEnUYKuNd3nrGwhAqDtr9KbgztTc2SP-gbsI/edit#heading=h.cv97uhcq2a6r" target="_blank"><img class="iconimage" src="https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x16.png">
-      <p class="textcolor">HandOver</p>
-      </a> 
-    </div>
-      <div class="column">
-     
-      <a href="https://docs.google.com/document/d/1hI8_kfDZEVnhKYExfzE3-4xADFhEtBYhhOJtpl8iHbs/edit" target="_blank"><img class="iconimage" src="https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x16.png">
-      <p class="textcolor">Camry Guide</p>
-      </a> 
-    </div>
-    
-     <div class="column">
-     
-      <a href="https://docs.google.com/spreadsheets/d/1D_ZbhMwyguLr3Iosxp9qsW2FE8oSYHicU-qvlcX34sI/edit#gid=567264085" target="_blank"><img class="iconimage" src="https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_document_x16.png">
-      <p class="textcolor">Placements</p>
-      </a> 
-    </div>
-    
-       <div class="column">
-        <a href="https://docs.google.com/spreadsheets/d/1iWC7U3svV6hLgeDWtN5Ldpq7_I9MNvqNvNRlP4P4A-s/edit#gid=0" target="_blank"><img class="iconimage" src="https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x16.png">
-        <p class="textcolor">Olive Roles</p>
-        </a> 
-    </div>
   
+    {% for link in linktomain %}
+    {% if link.table_id == "table_4"%}
+    <div class="column">
+     
+      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
+      <p class="textcolor">{{link.mainname}}</p>
+       <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+      </a> 
+      </div>
+      {% else %}
+     {% endif %}
+    
+   {% endfor %}
+   
+    
     <div class="column-btn">
-      <button  class="btn" id="myBtn" onclick="addurl()"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></button>
+       <a href="{% url 'addurl' table_id="table_4" %}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+      <p class="textcolor">Add More</p></a>
         
     </div>
-      
+    
+
     </div>
     </div>
   </div>
@@ -317,132 +220,80 @@
 
    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     
-      <h2 class="display-5 paddingfortitle">Essence Apps</h2>
- 
+     <div class="column-header">
+      <a href="" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">Add Title</h2>
+            
+      </a>
+      
+    </div>
+
+
    <div class="row">
    <div class="entirecolumn">
-   
-     <div class="column">
+  
+    
+    {% for link in linktomain %}
+    {% if link.table_id == "table_5"%}
+    <div class="column">
      
-      <a href="https://honey.is/home" target="_blank"><img class="iconimage" src="https://honey.is/favicon.ico">
-      <p class="textcolor">Honey</p>
+      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
+      <p class="textcolor">{{link.mainname}}</p>
+       <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
-    </div>
-   
+      </div>
+      {% else %}
+     {% endif %}
     
-    <div class="column">
-       <a href="https://app.hive.com/workspace" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://app.hive.com/workspace">
-       <p class="textcolor">Hive</p>
-       </a> 
-    </div>
-      
-    <div class="column">
-        <a href="https://app.10000ft.com/me/tracker" target="_blank"><img class="iconimage" src="https://static.10000ft.com/images/plans_balloon_logo.svg"> 
-        <p class="textcolor">10KFT</p>
-        </a>
-    </div>
+   {% endfor %}
     
-    <div class="column">
-      <a href="https://essenceglobal.bamboohr.com/home/" target="_blank"><img class="iconimage" src="https://essenceglobal.bamboohr.com/favicon.ico"> 
-      <p class="textcolor">Bamboohr</p>
-      </a>
-    </div>
-
-    <div class="column">
-      <a href="https://gogrow.essenceglobal.com" target="_blank"><img class="iconimage" src="https://gogrow.essenceglobal.com/favicon.ico"> 
-      <p class="textcolor">GoGrow</p>
-      </a>
-    </div>
-
-     <div class="column">
-      <a href="https://payrollservers.us/pg/Ess/Default.aspx" target="_blank"><img class="iconimage" src="https://essencedigital.atlassian.net/favicon.ico"> 
-      <p class="textcolor">Payroll</p>
-      </a>
-    </div>
-    
-   
     <div class="column-btn">
-      <button  class="btn" id="myBtn" onclick="addurl()"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></button>
+       <a href="{% url 'addurl' table_id="table_5" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+      <p class="textcolor">Add More</p></a>
         
     </div>
-      
+    
+
     </div>
     </div>
   </div>
-  
 <!--need to create this as a 3 column-->
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   
-   <h2 class="display-5 paddingfortitle">Report Apps</h2>
- 
+  <div class="column-header">
+      <a href="" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">Add Title</h2>
+            
+      </a>
+      
+    </div>
+
+
    <div class="row">
    <div class="entirecolumn">
-
- <div class="column">
-      <a href="https://deathstar.essencedigital.com/#/dashboard" target="_blank"><img class="iconimage" src="https://deathstar.essencedigital.com/static/img/logo.png"> 
-      <p class="textcolor">DeathStar</p>
-      </a>
-    </div>
-    
-     <div class="column">
-        <a href="https://camry.essencedigital.com" target="_blank"><img class="iconimage" src="https://camry.essencedigital.com/assets/img/omv-logo.png">
-        <p class="textcolor">Camry</p>
-        </a> 
-    </div>
-
-     <div class="column">
-        <a href="https://drive.google.com/drive/folders/1fwp1HSKbzDy-MVfbqQyb4oJa8dn0y5po" target="_blank"><img class="iconimage" src="https://drive.google.com/favicon.ico">
-        <p class="textcolor">Google Tech</p>
-        </a> 
-    </div>
-    
-     <div class="column">
-        <a href="https://drive.google.com/drive/folders/0B_peWyA0IhVnS3VONmwwMmJFblU" target="_blank"><img class="iconimage" src="https://drive.google.com/favicon.ico">
-        <p class="textcolor">DS Folder</p>
-        </a> 
-    </div>
-    <div class="column">
-        <a href="https://drive.google.com/drive/folders/1qD0Y0_QK-H8DnMhgM4VCYx7TH0mO__sy" target="_blank"><img class="iconimage" src="https://drive.google.com/favicon.ico">
-        <p class="textcolor">Camry</p>
-        </a> 
-    </div>
-      <div class="column">
-        <a href="https://docs.google.com/spreadsheets/d/1SM_5cBFYw7r9XZjDJUup7vilwnSwSxY403nuaKsphXU/edit#gid=1875429989" target="_blank"><img class="iconimage" src="https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x16.png">
-        <p class="textcolor">DS Generator</p>
-        </a> 
-    </div>
-      <div class="column">
-        <a href="https://docs.google.com/spreadsheets/d/1mc_y-vlaHb4Bl82BlciAXHb3z-sv6USE-rEKjS8tSl8/edit#gid=223261163" target="_blank"><img class="iconimage" src="https://drive.google.com/favicon.ico">
-        <p class="textcolor">Report Anna</p>
-        </a> 
-    </div>
-    <div class="column">
-        <a href="https://datalab.essenceglobal.com/looks/13393" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain=https://datalab.essenceglobal.com">
-        <p class="textcolor">Essence Feed</p>
-        </a> 
-    </div>
-      
-      
-       <div class="column">
-        <a href="https://console.cloud.google.com/bigquery?project=essencedigital.com:deathstar&organizationId=520597094442&p=essencedigital.com:deathstar&d=reporting&page=dataset" target="_blank"><img class="iconimage" src="images/BigQuery.png">
-        <p class="textcolor">BigQuery</p>
-        </a> 
-    
-    </div>
-       <div class="column">
-        <a href="https://console.cloud.google.com/storage/browser/pathfinder-data/MRF_MAP.csv?project=peak-vortex-130221&pli=1" target="_blank"><img class="iconimage" src="images/BigQuery.png">
-        <p class="textcolor">PathFinder</p>
-        </a> 
-    </div>
   
-
-     <div class="column-btn">
-      <button  class="btn" id="myBtn" onclick="addurl()"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></button>
+    
+    {% for link in linktomain %}
+    {% if link.table_id == "table_6"%}
+    <div class="column">
+     
+      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
+      <p class="textcolor">{{link.mainname}}</p>
+       <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+      </a> 
+      </div>
+      {% else %}
+     {% endif %}
+    
+   {% endfor %}
+    
+    <div class="column-btn">
+      <a href="{% url 'addurl' table_id="table_6" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+      <p class="textcolor">Add More</p></a>
         
     </div>
-      
+    
+
     </div>
     </div>
   </div>

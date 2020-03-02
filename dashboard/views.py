@@ -1,26 +1,28 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from dashboard.forms import RegistrationForm, EditProfileForm, userlinksForm
+from dashboard.forms import RegistrationForm, EditProfileForm, userlinksForm, userheaderForm
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth.forms import  PasswordChangeForm, UserChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import get_object_or_404
 
-from . models import userlinks
+from . models import userlinks, userheader
 
 
 # Create your views here.
 def dashboard(request):
     
     linktomain=userlinks.objects.all()
-    return render(request, 'Dashboard.html',{'linktomain':linktomain})
-
-def addurl(request):
+    linktoheader=userheader.objects.all()
+    return render(request, 'Dashboard.html',{'linktomain':linktomain,'linktoheader':linktoheader})
+#need to add user error for url
+def addurl(request, table_id):
     if request.method == 'POST':
         mainname = request.POST['mainname']
         main = request.POST['main']
         mainfavicon = ""
+        table_id= table_id
         counter=0
         total_letters=0
         charc=[]
@@ -37,7 +39,7 @@ def addurl(request):
                         mainfavicon += charc[x]
                 
         
-        addingurl = userlinks.objects.create(mainname=mainname, main=main, mainfavicon=mainfavicon)
+        addingurl = userlinks.objects.create(mainname=mainname, main=main, mainfavicon=mainfavicon, table_id=table_id)
         addingurl.save();
         return redirect("/Dashboard")
     else:
@@ -82,6 +84,7 @@ def edit_url(request, pk):
     }
     return render(request,'editlink.html', context)
 
+
 def delete_url(request, pk):
     post = get_object_or_404(userlinks, pk=pk)
 
@@ -97,7 +100,18 @@ def delete_url(request, pk):
     }
     return render(request,'editlink.html', context)
 
+def edit_header(request):
+    form = userheaderForm(request.POST or None)
 
+    if form.is_valid():
+        form.save()
+        return redirect("/Dashboard")
+    else:
+        form = userheaderForm()
+    context={
+        'form': form,
+    }
+    return render(request,'editheaders.html',context)
 
 def login(request):
     if request.method == 'POST':

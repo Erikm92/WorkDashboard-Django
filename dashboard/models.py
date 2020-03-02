@@ -9,8 +9,13 @@ class userlinks(models.Model):
     main = models.CharField (max_length=200,default='')
     mainname = models.CharField (max_length=200,default='')
     mainfavicon = models.CharField (max_length=200,default='')
+    table_id =  models.CharField (max_length=200,default='')
     
-
+class userheader(models.Model):
+       
+    header_id = models.CharField (max_length=200,default='')
+    header_name = models.CharField (max_length=200,default='')
+   
 
 
 class userprofile(models.Model):

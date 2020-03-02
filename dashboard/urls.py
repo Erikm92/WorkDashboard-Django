@@ -6,7 +6,7 @@ urlpatterns = [
   
     url(r'^$', views.dashboard),
 
-    url(r'^addurl/$', views.addurl ,name="addurl" ),
+    url(r'^addurl/(?P<table_id>[\w\-]+)/$', views.addurl ,name="addurl" ),
 
     url(r'^editurl/$', views.editurl ,name="editurl" ),
 
@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^editlinks/(?P<pk>\d+)/$',views.edit_url, name="editinglinks"),
 
     url(r'^deletelinks/(?P<pk>\d+)/$',views.delete_url, name="deletelinks"),
+
+    url(r'^editheaders/$',views.edit_header, name="editheaders"),
     
    
     
