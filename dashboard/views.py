@@ -53,6 +53,44 @@ def editurl(request):
 
     return render(request, 'editurl.html',{'linktomain':linktomain})
 
+def edittitle(request):
+    
+    linktotitle=userheader.objects.all()
+
+    return render(request, 'edittitle.html',{'linktotitle':linktotitle})
+
+def new_title(request):
+    form = userheaderForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        
+    else:
+        form = userheaderForm()
+    context={
+        'form': form,
+    }
+    return render(request,'edittitle.html',context)
+    
+
+def edit_title(request, pk):
+    post = get_object_or_404(userheader,pk=pk)
+
+    if request.method == "POST":
+        form = userheaderForm(request.POST, instance=post)
+
+       
+        if form.is_valid():
+            form.save()
+            return redirect("/Dashboard")
+    else:
+        form = userheaderForm(instance=post)
+    context={
+        'form': form,
+        'post': post,
+    }
+    return render(request,'edittitleform.html', context)
+
 def new_post(request):
     form = userlinksForm(request.POST or None)
 
@@ -100,18 +138,17 @@ def delete_url(request, pk):
     }
     return render(request,'editlink.html', context)
 
-def edit_header(request):
-    form = userheaderForm(request.POST or None)
-
-    if form.is_valid():
-        form.save()
+def edit_header(request, header_id):
+    if request.method == 'POST':
+        header_name = request.POST['header_name']
+        header_id = header_id
+        
+        addingheader = userheader.objects.create(header_name=header_name, header_id=header_id)
+        addingheader.save();
         return redirect("/Dashboard")
     else:
-        form = userheaderForm()
-    context={
-        'form': form,
-    }
-    return render(request,'editheaders.html',context)
+        return render(request,'editheaders.html')
+    
 
 def login(request):
     if request.method == 'POST':

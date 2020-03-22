@@ -45,13 +45,9 @@
     <div class="my-3 py-3">
  
     
-            <h2>Add Headers/Titles</h2>
-       
-           
-       
 
 
-<!-- Trigger/Open The Modal -->
+<!-- Need to hide Header_id we do not want this changed -->
     {% if messages %}
         {% for message in messages %}
                 <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
@@ -63,32 +59,18 @@
   <form class="form-addurl" id=""  method="post">
         {% csrf_token %}
 
-       <div id="dialog-title">Add shortcut</div>
-          <div id="title" class="field-container">
-            <label id="title-field-name" class="field-title" aria-label="Name">Header</label>
-            <div class="input-container">
-
-              <input name="header_name" id="title-field" class="field-input" type="text" autocomplete="off" tabindex="0">
-              <div class="underline"></div>
-            </div>
-          </div>
-        <div id="url" class="field-container">
-            
-            <div class="input-container">
-              <input type="hidden" id="table" name="header_id">
-
-              <div class="underline"></div>
-            </div>
-            <div id="invalid-url" class="error-msg">Type a valid URL</div>
-          </div>
-          <div class="buttons-container">
-            
-            <span>
-              <button id="cancel" class="paper secondary ripple" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button>
-              <button onclick = gettable() type="submit" class="paper primary ripple" tabindex="0" title="Add shortcut"  aria-label="Add shortcut">Done</button>
-            </span>
-          </div>
+        {% for field in form %}
+            <label>{{field.label_tag}}</label>
+            {{field}}
+        {% endfor%}
+       
+        {% with url_name=request.resolver_match.url_name %}
+        {% if url_name == 'editingtitle'%}
+           <button type="submit">Save</button>
+        {% else %}
         
+         {% endif %}
+         {% endwith %}
         
           
         </form>

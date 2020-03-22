@@ -3,13 +3,6 @@
 <html lang="en">
 <head>
 <title>Dashboard</title>
-<!-- Bootstrap core CSS -->
-
-
-<!-- Custom styles for this template -->
-
-
-<!-- Script for cross-site cookies-->
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet"  href="{% static 'dashboard/css/product.css'%}">
@@ -57,23 +50,26 @@
     <div class="column-header">
     {% for link in linktoheader %}
     {% if link.header_id == 'header_1'%}
-      <a href="/Dashboard/editheaders" id="none" target="_blank"><img class="" src="">
+    
+      <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
       <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
        {% else %}
-        <a href="/Dashboard/editheaders" id="none" target="_blank"><img class="" src="">
-       <h2 class="editable display-5" id="lbl1">Add Title</h2>
-      </a>
+      
+      
       {% endif %}
      {% endfor %}
+    
+      </a>   
     </div>
-
+ 
 
    <div class="row">
    <div class="entirecolumn">
   
-    
+    <!-- Want to show only urls to specific table-->
     {% for link in linktomain %}
     {% if link.table_id == "table_1"%}
+    
     <div class="column">
      
       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
@@ -97,13 +93,21 @@
     </div>
   </div>
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-  <div class="column-header">
-      <a href="" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">Add Title</h2>
-            
-      </a>
+   
+   <div class="column-header">
+    {% for link in linktoheader %}
+    {% if link.header_id == 'header_2'%}
+    
+      <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+       {% else %}
       
+      
+      {% endif %}
+     {% endfor %}
+     
     </div>
+
 
 
    <div class="row">
@@ -137,13 +141,20 @@
 
    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     
-   <div class="column-header">
-      <a href="" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">Add Title</h2>
-            
-      </a>
+    <div class="column-header">
+    {% for link in linktoheader %}
+    {% if link.header_id == 'header_3'%}
+    
+      <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+       {% else %}
       
+      
+      {% endif %}
+     {% endfor %}
+     
     </div>
+
 
 
    <div class="row">
@@ -179,12 +190,18 @@
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 mainbox">
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   
-    <div class="column-header">
-      <a href="" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">Add Title</h2>
-            
-      </a>
+  <div class="column-header">
+    {% for link in linktoheader %}
+    {% if link.header_id == 'header_4'%}
+    
+      <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+       {% else %}
       
+      
+      {% endif %}
+     {% endfor %}
+     
     </div>
 
 
@@ -221,12 +238,19 @@
    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     
      <div class="column-header">
-      <a href="" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">Add Title</h2>
-            
-      </a>
+    {% for link in linktoheader %}
+    {% if link.header_id == 'header_5'%}
+    
+      <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+       {% else %}
       
+      
+      {% endif %}
+     {% endfor %}
+     
     </div>
+
 
 
    <div class="row">
@@ -261,12 +285,19 @@
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   
   <div class="column-header">
-      <a href="" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">Add Title</h2>
-            
-      </a>
+    {% for link in linktoheader %}
+    {% if link.header_id == 'header_6'%}
+    
+      <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
+      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+       {% else %}
       
+      
+      {% endif %}
+     {% endfor %}
+     
     </div>
+
 
 
    <div class="row">
