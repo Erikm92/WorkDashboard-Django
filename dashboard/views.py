@@ -37,8 +37,12 @@ def addurl(request, table_id):
                 if counter == 3:
                     for x in range(total_letters):
                         mainfavicon += charc[x]
-                
-        
+        if "github" in main:
+            mainfavicon ="https://github.githubassets.com/favicons/favicon-dark.png"
+
+    #you can add if main contains letter make mainfavi=url for favi
+    #using if has worked! need to find a way to filter for user favi link or system favilink
+    #need to add a new column where if user enters favicon link flag to yes! using that instead
         addingurl = userlinks.objects.create(mainname=mainname, main=main, mainfavicon=mainfavicon, table_id=table_id)
         addingurl.save();
         return redirect("/Dashboard")

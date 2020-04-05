@@ -3,17 +3,19 @@
 <html lang="en">
 <head>
 <title>Dashboard</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <link rel="stylesheet"  href="{% static 'dashboard/css/product.css'%}">
 <link rel="stylesheet"  href="{% static 'dashboard/css/dialog.css'%}">
 <script> type="text/JavaScript" src="{% static 'dashboard/js/addurl.js'%}"</script> 
 <script> type="text/JavaScript" src="{% static 'dashboard/js/editurls.js'%}"</script> 
 <script> type="text/JavaScript" src="{% static 'dashboard/js/editheaders.js'%}"</script> 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
+<script type="text/javascript">
+document.body.style.zoom="90%"
+</script>
 
 </head>
 <body>
@@ -21,12 +23,13 @@
   <div class="container d-flex flex-column flex-md-row justify-content-between">
     
 <!--Need to fix re-directs-->
+<!--need to fix in page dashboard redirects from a tag remove target blank-->
     <a class="py-2 d-none d-md-inline-block" href="/Dashboard">Dashboard</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-    <a class="py-2 d-none d-md-inline-block" href="/Dashboard/editheaders">Features</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
     <a class="py-2 d-none d-md-inline-block" href="/Dashboard/profile">Profile</a>
-    <a class="btn btn-outline-secondary" href="/Dashboard/logout">Logout</a>
+    <a href="/Dashboard/logout"><button class="btn btn-outline-secondary btn-color">Logout</button></a>
    
     
   </div>
@@ -51,8 +54,8 @@
     {% for link in linktoheader %}
     {% if link.header_id == 'header_1'%}
     
-      <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+      <a href="{% url 'edittitle' %}" id="none" ><img class="" src="">
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">{{link.header_name}}</h2>
        {% else %}
       
       
@@ -71,13 +74,19 @@
     {% if link.table_id == "table_1"%}
     
     <div class="column">
-     
-      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
+     {% if "github" in link.main%}
+      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
       <p class="textcolor">{{link.mainname}}</p>
        <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
       </div>
       {% else %}
+       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
+      <p class="textcolor">{{link.mainname}}</p>
+       <a href="/Dashboard/editurl" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+      </a> 
+      </div>
+      {% endif %}
      {% endif %}
     
    {% endfor %}
@@ -99,7 +108,7 @@
     {% if link.header_id == 'header_2'%}
     
       <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
        {% else %}
       
       
@@ -146,7 +155,7 @@
     {% if link.header_id == 'header_3'%}
     
       <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
        {% else %}
       
       
@@ -195,7 +204,7 @@
     {% if link.header_id == 'header_4'%}
     
       <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
        {% else %}
       
       
@@ -242,7 +251,7 @@
     {% if link.header_id == 'header_5'%}
     
       <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
        {% else %}
       
       
@@ -289,7 +298,7 @@
     {% if link.header_id == 'header_6'%}
     
       <a href="{% url 'edittitle' %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5" id="lbl1">{{link.header_name}}</h2>
+      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
        {% else %}
       
       
@@ -329,7 +338,34 @@
     </div>
   </div>
 </div>
+<footer class="footer-distributed bg-dark">
 
+
+			<div class="footer-left">
+
+				<p class="footer-links">
+					<a href="#">Dashboard</a>
+					
+					<a href="#">Product</a>
+					
+					<a href="#">Features</a>
+					
+					<a href="#">Support</a>
+					
+					<a href="#">Profile</a>
+					
+					<a href="#">Sign In</a>
+				</p>
+        <div class="footer-right">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+				<a href="#"><i class="fa fa-github"></i></a>
+			
+			</div>	
+      <p>Web Dashboard © 2019 All Rights Reserved</p>
+     </div>
+		</footer>
 
 <!--next row entirely-->
 

@@ -48,23 +48,24 @@
 
 <!-- Trigger/Open The Modal -->
   
-<table class="form-addurl">
+<table class="table table-dark table-hover table-bordered">
 
-    <thead class="">
+    <thead class="thead-light">
     <tr>
-        <th scope="col">PK</th>
+        
         <th scope="col">Header ID</th>
         <th scope="col">Header Name</th>
+        <th scope="col">Edit</th>
         
     </tr>
     <thead>
     <tbody>
      {% for link in linktotitle %}
         <tr>
-            <td>{{link.pk}}</td>
+            
             <td>{{link.header_id}}</td>
             <td>{{link.header_name}}</td>
-            <td><a href="{% url 'editingtitle' pk=link.pk %}"><button class=""></button></a>Edit</td>
+            <td><a href="{% url 'editingtitle' pk=link.pk %}"><button class="btn btn-outline-secondary btn-color">Edit</button></a></td>
         </tr>
             
     {% endfor %}

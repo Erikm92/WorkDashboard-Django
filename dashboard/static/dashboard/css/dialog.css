@@ -5,7 +5,11 @@
   margin: 0 auto;
   border: 2px 2px 2px 2px;
   border-style: solid;
-  border-color: #004080;
+  border-color: white;
+}
+.form-button
+{
+  padding-top: 15px;
 }
 
 .mouse-navigation {

@@ -71,11 +71,13 @@
         {% endfor%}
        
         {% with url_name=request.resolver_match.url_name %}
+        <div class="form-button">
         {% if url_name == 'editinglinks'%}
-           <button type="submit">Save</button>
+           <button type="submit" class="btn btn-outline-secondary btn-color">Save</button>
         {% else %}
-            <button type="submit">Delete</button>
+            <button type="submit" class="btn btn-outline-secondary btn-color">Delete</button>
          {% endif %}
+         </div>
          {% endwith %}
         
           

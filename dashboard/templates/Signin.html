@@ -28,8 +28,8 @@
     <a class="py-2 d-none d-md-inline-block" href="/">Dashboard</a>
    
     <div class="nav-masthead">
-     <a class="btn btn-outline-secondary" href="/Dashboard/login">Sign In</a>
-      <a class="btn btn-outline-secondary" href="/Dashboard/register">Sign up</a>
+     <a href="/Dashboard/login"><button class="btn btn-outline-secondary btn-color">Sign In</button></a>
+      <a href="/Dashboard/register"><button class="btn btn-outline-secondary btn-color">Sign up</button></a>
       </div>
   </div>
 </nav>
@@ -48,17 +48,17 @@
       <form class="form-signin" method="post">
 
         <h3 class="form-signin-heading"> Dashboard Sign in</h3>
-        <h5>Sign in to view your dashboard</h5>
+       
         
         {% csrf_token %}
         
 
         <h4>Enter Email:</h4>
         <label for="inputEmail" class="sr-only">Email address</label>
-
         <input name= "username"  id="inputEmail" class="form-control" placeholder="*Email address/UserName" required>
+
         <h4>Enter Password:</h4>
-        <label for="inputPassword" class="sr-only">Password</label>
+        <label for="inputPassword" class="sr-only" >Password</label>
         <input name= "password" type="password" id="inputPassword" class="form-control" placeholder="Password" oninvalid="this.setCustomValidity('Please Enter your Password')" oninput="setCustomValidity('')" required>
         <div class="checkbox">
           <label>
@@ -66,7 +66,7 @@
           </label>
 
         </div>
-        <button class="btn btn-outline-secondary btnpadding" type="submit">Sign in</button> 
+        <button class="btn btn-outline-secondary btn-color" type="submit">Sign in</button> 
         <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
         <p><a href="#">I forgot my user ID or password</a></p>
 		

@@ -35,7 +35,7 @@
 
 <div class="position-relative overflow-hidden p-3 p-md-1 m-md-3 text-center bg-dark">
   <div class="col-md-5 mx-auto">
-    <h1 class="display-4 titleposition">Web Dashboard</h1>
+    <h1 class="display-4 titleposition">User Profile</h1>
  </div>
   </div>
 
@@ -43,24 +43,35 @@
   <div class="bg-dark mr-md-3 px-md-3 text-center text-white overflow-hidden">
     <div class="my-3 py-3">
  
+<table class="table table-dark table-hover table-bordered">
 
-     
+    <thead class="thead-light">
+    <tr>
+        
+        <th scope="col">User Name</th>
+        <th scope="col">first Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        
+    </tr>
+    <thead>
+    <tbody>
+  
+        <tr>
+           
+            <td>{{user}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+          
+          <!--No Edits on profile until i can figure out sign in auth use the following to rediret to profile/edit
+             <td><a href="/Dashboard/profile/edit"><button class="btn btn-outline-secondary btn-color">Edit</button></a></td>   -->
+        </tr>
+            
+   
+    </tbody>
 
-        <h3 class="form-signin-heading">User Profile</h3>
-        <h5>View Profile Details</h5>
-        
-        <p>Username: {{user}}</p>
-        
-        <h4>First Name: {{user.first_name}}</h4>
-        
-        <h4>Last Name: {{user.last_name}} </h4>
-        
-        <h4>Email: {{user.email}}</h4>
-        
-        <a class="btn btn-outline-secondary btnpadding" type="submit" href="/Dashboard/profile/edit">Edit Profile </a> 
-        
-      
-      
+    </table>
 
     </div> <!-- /container -->
     </div>
