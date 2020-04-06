@@ -37,7 +37,7 @@
 
 <div class="position-relative overflow-hidden p-3 p-md-1 m-md-3 text-center bg-dark">
   <div class="col-md-5 mx-auto">
-    <h1 class="display-4 titleposition">Web Dashboard</h1>
+    <h1 class="display-4 titleposition">Add Shortcut</h1>
  </div>
   </div>
 
@@ -53,7 +53,7 @@
 
         <form class="form-addurl" id=""  method="post">
         {% csrf_token %}
-        <div id="dialog-title">Add shortcut</div>
+        
           <div id="title" class="field-container">
             <label id="title-field-name" class="field-title" aria-label="Name">Name</label>
             <div class="input-container">
@@ -77,8 +77,9 @@
           <div class="buttons-container">
             
             <span>
-              <button onclick="location.href='/Dashboard'" id="cancel" class="btn btn-outline-secondary btn-color" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button>
               <button onclick = gettable() type="submit" class="btn btn-outline-secondary btn-color" tabindex="0" title="Add shortcut"  aria-label="Add shortcut">Done</button>
+              <button onclick="location.href='/Dashboard'" id="cancel" class="btn btn-outline-secondary btn-color" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button>
+
             </span>
           </div>
           

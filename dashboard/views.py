@@ -9,14 +9,26 @@ from django.shortcuts import get_object_or_404
 
 from . models import userlinks, userheader
 
+class counter:
+    counter=0
+    def increment(self):
+        self.counter += 1
+        return self.counter
+    def set_to_zero(self):
+        self.counter = 0
+        return self.counter
+
+
 
 # Create your views here.
 def dashboard(request):
-    
+    count=counter
     linktomain=userlinks.objects.all()
     linktoheader=userheader.objects.all()
-    return render(request, 'Dashboard.html',{'linktomain':linktomain,'linktoheader':linktoheader})
+
+    return render(request, 'Dashboard.html',{'linktomain':linktomain,'linktoheader':linktoheader, 'counter':count})
 #need to add user error for url
+
 def addurl(request, table_id):
     if request.method == 'POST':
         mainname = request.POST['mainname']
@@ -51,15 +63,15 @@ def addurl(request, table_id):
    
 
    
-def editurl(request):
-
-    linktomain=userlinks.objects.all()
+def editurl(request, table_id):
+    table_id = table_id
+    linktomain=userlinks.objects.all().filter(table_id=table_id)
 
     return render(request, 'editurl.html',{'linktomain':linktomain})
 
-def edittitle(request):
-    
-    linktotitle=userheader.objects.all()
+def edittitle(request, header_id):
+    header_id=header_id
+    linktotitle=userheader.objects.all().filter(header_id=header_id)
 
     return render(request, 'edittitle.html',{'linktotitle':linktotitle})
 

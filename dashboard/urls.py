@@ -7,12 +7,12 @@ urlpatterns = [
     url(r'^$', views.dashboard),
 
     url(r'^addurl/(?P<table_id>[\w\-]+)/$', views.addurl ,name="addurl" ),
-    # not using for now
-    url(r'^editheaders/(?P<header_id>[\w\-]+)/$',views.edit_header, name="editheaders"),
+    # need to hide header_id
+    url(r'^editheaders/(?P<header_id>[\w\-]+)/$',views.edittitle, name="editheaders"),
 
-    url(r'^edittitle/$', views.edittitle ,name="edittitle" ),
+    #url(r'^edittitle/(?P<header_id>[\w\-]+)/$', views.edittitle ,name="edittitle" ),
 
-    url(r'^edittitleform/$', views.new_title, name="edittitles"),
+    #url(r'^edittitleform/$', views.new_title, name="edittitles"),
 
     url(r'^edittitle/(?P<pk>\d+)/$',views.edit_title, name="editingtitle"),
 
@@ -28,8 +28,9 @@ urlpatterns = [
 
     url(r'^change-password/$', views.change_password,  name="change_password"),
 
-#this is all views for editing urls
-    url(r'^editurl/$', views.editurl ,name="editurl" ),
+    #this is all views for editing urls
+    #need to figure out what to do with table_id
+    url(r'^editurl/(?P<table_id>[\w\-]+)/$', views.editurl ,name="editurl" ),
 
     url(r'^editlink/$', views.new_post, name="editlink"),
 
