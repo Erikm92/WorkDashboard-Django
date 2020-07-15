@@ -1,19 +1,19 @@
 from django.conf.urls import url
+from django.urls import reverse
 from . import views
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
   
     url(r'^$', views.dashboard),
-
+    #add new url button view, first time adding 
     url(r'^addurl/(?P<table_id>[\w\-]+)/$', views.addurl ,name="addurl" ),
-    # need to hide header_id
-    url(r'^editheaders/(?P<header_id>[\w\-]+)/$',views.edittitle, name="editheaders"),
+    #add new header button view, first time adding
+    url(r'^addheader/(?P<header_id>[\w\-]+)/$', views.addheader ,name="addheader" ),
 
-    #url(r'^edittitle/(?P<header_id>[\w\-]+)/$', views.edittitle ,name="edittitle" ),
-
-    #url(r'^edittitleform/$', views.new_title, name="edittitles"),
-
+    # edit the header form (edit option)
+    url(r'^editheaders/(?P<pk>\d+)/$',views.edittitle, name="editheaders"),
+    # edit the header form after the editheader kicks in (Save) new changes
     url(r'^edittitle/(?P<pk>\d+)/$',views.edit_title, name="editingtitle"),
 
     url(r'^login/$', views.login ,name="login" ),
@@ -28,14 +28,16 @@ urlpatterns = [
 
     url(r'^change-password/$', views.change_password,  name="change_password"),
 
-    #this is all views for editing urls
-    #need to figure out what to do with table_id
-    url(r'^editurl/(?P<table_id>[\w\-]+)/$', views.editurl ,name="editurl" ),
+    #transfer the url form (edit or delete)
+    url(r'^transferlink/$', views.transferlink ,name="transferlink" ),
 
-    url(r'^editlink/$', views.new_post, name="editlink"),
+    #edit the url form (edit or delete)
+    url(r'^editurl/(?P<pk>\d+)/$', views.editurl ,name="editurl" ),
 
+    #the actual edit form after the edit url kicks in (save) new changes
     url(r'^editlinks/(?P<pk>\d+)/$',views.edit_url, name="editinglinks"),
 
+    #the actual delete form after the edit url kicks in (delete) new changes
     url(r'^deletelinks/(?P<pk>\d+)/$',views.delete_url, name="deletelinks")
 
     

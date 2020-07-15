@@ -36,7 +36,7 @@
 
 <div class="position-relative overflow-hidden p-3 p-md-1 m-md-3 text-center bg-dark">
   <div class="col-md-5 mx-auto">
-    <h1 class="display-4 titleposition">Edit Shortcuts</h1>
+    <h1 class="display-4 titleposition">Transfer Shortcuts</h1>
  </div>
   </div>
 
@@ -53,23 +53,17 @@
     <thead class="thead-light">
     <tr>
         
-        <th scope="col">Name</th>
-        <th scope="col">URL</th>
-        <th scope="col">Edit</th>
+        <th scope="col">Header Name</th>
         <th scope="col">Transfer</th>
-        <th scope="col">Delete</th>
         <th scope="col">Cancel</th>
     </tr>
     <thead>
     <tbody>
-    {% for link in linktomain %}
+    {% for link in linktotitle %}
         <tr>
            
-            <td>{{link.mainname}}</td>
-            <td>{{link.main}}</td>
-            <td><a href="{% url 'editinglinks' pk=link.pk %}"><button class="btn btn-outline-secondary btn-color">Edit</button></a></td>
-            <td><a href="{% url 'transferlink' %}"><button class="btn btn-outline-secondary btn-color">Transfer</button></a></td>
-            <td><a href="{% url 'deletelinks' pk=link.pk %}"><button class="btn btn-outline-secondary btn-color">Delete</button></a></td>
+            <td>{{link.header_name}}</td>
+            <td><a href="{% url 'transferlink' %}"><button class="btn btn-outline-secondary btn-color">Select</button></a></td>
             <td><button onclick="location.href='/Dashboard'" id="cancel" class="btn btn-outline-secondary btn-color" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button></td>
 
         </tr>

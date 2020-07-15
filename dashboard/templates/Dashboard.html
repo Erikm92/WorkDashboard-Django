@@ -51,19 +51,41 @@ document.body.style.zoom="90%"
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   
     <div class="column-header">
-    {% for link in linktoheader %}
-    {% if link.header_id == 'header_1'%}
+
+
+    {% if link1 %}
+  
+     {% for link in link1 %}
     
-      <a href="{% url 'editheaders' header_id="header_1" %}" id="none" ><img class="" src="">
+
+      {% if link.header_id == 'header_1'%}
+    
+      <a href="{% url 'editheaders' pk=link.pk %}" id="none" >
       <h2 class="btn-outline-secondary btn-color" id="lbl1">{{link.header_name}}</h2>
-       {% else %}
+     
+      {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_1" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
       
+ 
       
-      {% endif %}
+      {% endif %} 
+     
      {% endfor %}
-    
-      </a>   
+
+    {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_1" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+      
+      
+
+    {% endif %} 
+     
+       </a>   
     </div>
+    
  
 
    <div class="row">
@@ -76,20 +98,12 @@ document.body.style.zoom="90%"
     {% if link.table_id == "table_1"%}
     
     <div class="column">
-     {% if "github" in link.main%}
-      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
+       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
       <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_1" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a> 
-      </div>
-      
-      {% else %}
-       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_1" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a>
       </div>
-      {% endif %}
+      
      {% endif %}
       {% endfor %}   
 
@@ -102,23 +116,39 @@ document.body.style.zoom="90%"
     </div>
     </div>
   </div>
+
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
    
    <div class="column-header">
-    {% for link in linktoheader %}
-    {% if link.header_id == 'header_2'%}
+
+   {% if link2 %}
+     {% for link in link2  %}
     
-      <a href="{% url 'editheaders' header_id="header_2" %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
-       {% else %}
+
+      {% if link.header_id == 'header_2'%}
+    
+      <a href="{% url 'editheaders' pk=link.pk %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">{{link.header_name}}</h2>
       
+      {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_2" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
       
-      {% endif %}
+     {% endif %} 
      {% endfor %}
+
+    {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_2" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+      
+      
+
+    {% endif %} 
      
+       </a>   
     </div>
-
-
 
    <div class="row">
    <div class="entirecolumn">
@@ -127,25 +157,19 @@ document.body.style.zoom="90%"
     {% for link in linktomain %}
     {% if link.table_id == "table_2"%}
     <div class="column">
-     {% if "github" in link.main%}
-      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
+  
+       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
       <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_2" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+       <a href="{% url 'editurl' pk=link.pk  %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
       </div>
-      {% else %}
-       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_2" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a> 
-      </div>
-      {% endif %}
+      
      {% endif %}
     
    {% endfor %}
     
     <div class="column-btn">
-       <a href="{% url 'addurl' table_id="table_2" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+       <a href="{% url 'addurl' table_id="table_2"  %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
       <p class="textcolor">Add More</p></a>
         
     </div>
@@ -158,19 +182,37 @@ document.body.style.zoom="90%"
    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     
     <div class="column-header">
-    {% for link in linktoheader %}
-    {% if link.header_id == 'header_3'%}
-    
-      <a href="{% url 'editheaders' header_id="header_3" %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
-       {% else %}
-      
-      
-      {% endif %}
-     {% endfor %}
-     
-    </div>
 
+   {% if link3 %}
+     {% for link in link3 %}
+    
+
+      {% if link.header_id == 'header_3'%}
+    
+      <a href="{% url 'editheaders' pk=link.pk %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">{{link.header_name}}</h2>
+      
+      {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_3" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+ 
+      
+        {% endif %} 
+     
+     {% endfor %}
+
+    {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_3" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+      
+      
+
+    {% endif %} 
+     
+       </a>   
+    </div>
 
 
    <div class="row">
@@ -180,25 +222,19 @@ document.body.style.zoom="90%"
     {% for link in linktomain %}
     {% if link.table_id == "table_3"%}
     <div class="column">
-    {% if "github" in link.main%}
-      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
+   
+       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
       <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_3" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+       <a href="{% url 'editurl' pk=link.pk  %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
       </div>
-      {% else %}
-       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_3" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a> 
-      </div>
-      {% endif %}
+      
      {% endif %}
     
    {% endfor %}
     
     <div class="column-btn">
-      <a href="{% url 'addurl' table_id="table_3" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+      <a href="{% url 'addurl' table_id="table_3"  %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
       <p class="textcolor">Add More</p></a>
         
     </div>
@@ -213,17 +249,36 @@ document.body.style.zoom="90%"
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   
   <div class="column-header">
-    {% for link in linktoheader %}
-    {% if link.header_id == 'header_4'%}
+   
+   {% if link4 %}
+     {% for link in link4 %}
     
-      <a href="{% url 'editheaders' header_id="header_4" %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
-       {% else %}
+
+      {% if link.header_id == 'header_4'%}
+    
+      <a href="{% url 'editheaders' pk=link.pk %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">{{link.header_name}}</h2>
       
+      {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_4" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+ 
       
-      {% endif %}
-     {% endfor %}
+        {% endif %} 
      
+     {% endfor %}
+
+    {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_4" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+      
+      
+
+    {% endif %} 
+     
+       </a>   
     </div>
 
 
@@ -233,26 +288,19 @@ document.body.style.zoom="90%"
     {% for link in linktomain %}
     {% if link.table_id == "table_4"%}
     <div class="column">
-    {% if "github" in link.main%}
-      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
+    
+       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
       <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_4" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+       <a href="{% url 'editurl' pk=link.pk  %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
       </div>
-      {% else %}
-       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_4" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a> 
-      </div>
-      {% endif %}
+      
      {% endif %}
     
    {% endfor %}
    
-    
     <div class="column-btn">
-       <a href="{% url 'addurl' table_id="table_4" %}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+       <a href="{% url 'addurl' table_id="table_4"  %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
       <p class="textcolor">Add More</p></a>
         
     </div>
@@ -266,17 +314,36 @@ document.body.style.zoom="90%"
    <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     
      <div class="column-header">
-    {% for link in linktoheader %}
-    {% if link.header_id == 'header_5'%}
+   
+   {% if link5 %}
+     {% for link in link5 %}
     
-      <a href="{% url 'editheaders' header_id="header_5" %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
-       {% else %}
+
+      {% if link.header_id == 'header_5'%}
+    
+      <a href="{% url 'editheaders' pk=link.pk %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">{{link.header_name}}</h2>
       
+      {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_5" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+ 
       
-      {% endif %}
-     {% endfor %}
+        {% endif %} 
      
+     {% endfor %}
+
+    {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_5" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+      
+      
+
+    {% endif %} 
+     
+       </a>   
     </div>
 
 
@@ -289,25 +356,18 @@ document.body.style.zoom="90%"
     {% if link.table_id == "table_5"%}
     <div class="column">
      
-     {% if "github" in link.main%}
-      <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
+       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
       <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_5" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+       <a href="{% url 'editurl' pk=link.pk  %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
       </div>
-      {% else %}
-       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_5" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a> 
-      </div>
-      {% endif %}
+     
      {% endif %}
     
    {% endfor %}
     
     <div class="column-btn">
-       <a href="{% url 'addurl' table_id="table_5" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+       <a href="{% url 'addurl' table_id="table_5"  %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
       <p class="textcolor">Add More</p></a>
         
     </div>
@@ -320,17 +380,36 @@ document.body.style.zoom="90%"
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
   
   <div class="column-header">
-    {% for link in linktoheader %}
-    {% if link.header_id == 'header_6'%}
     
-      <a href="{% url 'editheaders' header_id="header_6" %}" id="none" target="_blank"><img class="" src="">
-      <h2 class="editable display-5 btn-color" id="lbl1">{{link.header_name}}</h2>
-       {% else %}
+    {% if link6 %}
+     {% for link in link6 %}
+    
+
+      {% if link.header_id == 'header_6'%}
+    
+      <a href="{% url 'editheaders' pk=link.pk %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">{{link.header_name}}</h2>
       
+     {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_6" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+ 
       
-      {% endif %}
-     {% endfor %}
+        {% endif %} 
      
+     {% endfor %}
+
+    {% else %}
+       
+       <a href="{% url 'addheader' header_id="header_6" %}" id="none" >
+      <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
+      
+      
+
+    {% endif %} 
+     
+       </a>   
     </div>
 
 
@@ -346,13 +425,13 @@ document.body.style.zoom="90%"
     {% if "github" in link.main%}
       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
       <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_6" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
       </div>
       {% else %}
-       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src="https://www.google.com/s2/favicons?domain={{link.mainfavicon}}">
+       <a href="{{link.main}}" id="none" target="_blank"><img class="iconimage" src={{link.mainfavicon}}>
       <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' table_id="table_6" %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
+       <a href="{% url 'editurl' pk=link.pk  %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
       </a> 
       </div>
       {% endif %}
@@ -361,7 +440,7 @@ document.body.style.zoom="90%"
    {% endfor %}
     
     <div class="column-btn">
-      <a href="{% url 'addurl' table_id="table_6" %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
+      <a href="{% url 'addurl' table_id="table_6"  %}" class="btn" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
       <p class="textcolor">Add More</p></a>
         
     </div>

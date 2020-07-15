@@ -17,10 +17,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django_dashboard import views
+from django.urls import path
 
 
 urlpatterns = [
     url(r'^$', views.login_redirect, name='login_redirect'),    
     url(r'^admin/', admin.site.urls),
     url(r'^Dashboard/',include('dashboard.urls')),
+#    path('accounts/', include('allauth.urls')),
 ]

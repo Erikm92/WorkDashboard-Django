@@ -14,6 +14,7 @@
 <link rel="stylesheet"  href="{% static 'dashboard/css/product.css'%}">
 <link rel="stylesheet"  href="{% static 'dashboard/css/dialog.css'%}">
 <script type="text/JavaScript" src="{% static 'dashboard/js/addurl.js'%}"></script> 
+<script type="text/JavaScript" src="{% static 'dashboard/js/changetable.js'%}"></script> 
 
 <!-- Script for cross-site cookies-->
 
@@ -29,14 +30,14 @@
     <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
     <a class="py-2 d-none d-md-inline-block" href="/Dashboard/profile">Profile</a>
-    <a class="btn btn-outline-secondary" href="/Dashboard/logout">Logout</a>
+    <a href="/Dashboard/logout"><button class="btn btn-outline-secondary btn-color" >Logout</button></a>
    
   </div>
 </nav>
 
 <div class="position-relative overflow-hidden p-3 p-md-1 m-md-3 text-center bg-dark">
   <div class="col-md-5 mx-auto">
-    <h1 class="display-4 titleposition">Edit Shortcuts</h1>
+    <h1 class="display-4 titleposition">Add Header</h1>
  </div>
   </div>
 
@@ -47,39 +48,31 @@
 
 
 <!-- Trigger/Open The Modal -->
-
-<table class="table table-dark table-hover table-bordered">
-
-    <thead class="thead-light">
-    <tr>
+  
         
-        <th scope="col">Name</th>
-        <th scope="col">URL</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Transfer</th>
-        <th scope="col">Delete</th>
-        <th scope="col">Cancel</th>
-    </tr>
-    <thead>
-    <tbody>
-    {% for link in linktomain %}
-        <tr>
-           
-            <td>{{link.mainname}}</td>
-            <td>{{link.main}}</td>
-            <td><a href="{% url 'editinglinks' pk=link.pk %}"><button class="btn btn-outline-secondary btn-color">Edit</button></a></td>
-            <td><a href="{% url 'transferlink' %}"><button class="btn btn-outline-secondary btn-color">Transfer</button></a></td>
-            <td><a href="{% url 'deletelinks' pk=link.pk %}"><button class="btn btn-outline-secondary btn-color">Delete</button></a></td>
-            <td><button onclick="location.href='/Dashboard'" id="cancel" class="btn btn-outline-secondary btn-color" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button></td>
+<!--Form has the same class as addurl-->
+      <form class="form-addurl" id=""  method="post">
+        {% csrf_token %}
+        
+          <div id="title" class="field-container">
+            <label id="title-field-name" class="field-title" aria-label="Name">Add Header</label>
+            <div class="input-container">
 
-        </tr>
+              <input name="header_name" id="title-field" class="field-input" type="text" autocomplete="off" tabindex="0">
+              <div class="underline"></div>
+            </div>
+          </div>
+          
+          <div class="buttons-container">
             
-    {% endfor %}
-    </tbody>
+            <span>
+              <button onclick = gettable() type="submit" class="btn btn-outline-secondary btn-color" tabindex="0" title="Add shortcut"  aria-label="Add shortcut">Done</button>
+              <button onclick="location.href='/Dashboard'" id="cancel" class="btn btn-outline-secondary btn-color" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button>
 
-    </table>
-
-      
+            </span>
+          </div>
+          
+        </form>
     
     </div> <!-- /container -->
     </div>

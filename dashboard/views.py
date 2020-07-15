@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from dashboard.forms import RegistrationForm, EditProfileForm, userlinksForm, userheaderForm
 from django.contrib.auth.models import User, auth
@@ -6,31 +7,40 @@ from django.contrib import messages
 from django.contrib.auth.forms import  PasswordChangeForm, UserChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponse,HttpResponseRedirect, Http404
 
-from . models import userlinks, userheader
-
-class counter:
-    counter=0
-    def increment(self):
-        self.counter += 1
-        return self.counter
-    def set_to_zero(self):
-        self.counter = 0
-        return self.counter
-
+from .models import userlinks, userheader
 
 
 # Create your views here.
 def dashboard(request):
-    count=counter
-    linktomain=userlinks.objects.all()
-    linktoheader=userheader.objects.all()
+    linktomain=userlinks.objects.filter(user=request.user)
+    linktotitle=userheader.objects.filter(user=request.user)
+    linktoheader_1=userheader.objects.filter(header_id="header_1",user=request.user)
+    link1=linktoheader_1.all()
+    linktoheader_2=userheader.objects.filter(header_id="header_2", user=request.user)
+    link2=linktoheader_2.all()
+    linktoheader_3=userheader.objects.filter(header_id="header_3",user=request.user)
+    link3=linktoheader_3.all()
+    linktoheader_4=userheader.objects.filter(header_id="header_4",user=request.user)
+    link4=linktoheader_4.all()
+    linktoheader_5=userheader.objects.filter(header_id="header_5",user=request.user)
+    link5=linktoheader_5.all()
+    linktoheader_6=userheader.objects.filter(header_id="header_6",user=request.user)
+    link6=linktoheader_6.all()
 
-    return render(request, 'Dashboard.html',{'linktomain':linktomain,'linktoheader':linktoheader, 'counter':count})
+    return render(request, 'Dashboard.html',{'linktomain':linktomain,'linktotitle':linktotitle,'link1':link1,
+    'link2':link2,'link3':link3,'link4':link4,'link5':link5,'link6':link6})
 #need to add user error for url
 
 def addurl(request, table_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    
     if request.method == 'POST':
+   #     form = userlinksForm(request.POST)
+        
+   #     if form.is_valid():
         mainname = request.POST['mainname']
         main = request.POST['main']
         mainfavicon = ""
@@ -38,9 +48,8 @@ def addurl(request, table_id):
         counter=0
         total_letters=0
         charc=[]
-   
+    
         for i in main:
-        
             charc += [i]
         for x in charc:
             total_letters += 1
@@ -49,44 +58,55 @@ def addurl(request, table_id):
                 if counter == 3:
                     for x in range(total_letters):
                         mainfavicon += charc[x]
-        if "github" in main:
-            mainfavicon ="https://github.githubassets.com/favicons/favicon-dark.png"
-
-    #you can add if main contains letter make mainfavi=url for favi
-    #using if has worked! need to find a way to filter for user favi link or system favilink
-    #need to add a new column where if user enters favicon link flag to yes! using that instead
-        addingurl = userlinks.objects.create(mainname=mainname, main=main, mainfavicon=mainfavicon, table_id=table_id)
+        faviconurl="https://www.google.com/s2/favicons?domain="+mainfavicon
+    #     
+        addingurl = userlinks.objects.create(mainname=mainname, main=main, mainfavicon=faviconurl, table_id=table_id)
+        addingurl.user=request.user
         addingurl.save();
+            #instance=form.save()
+         #   instance.user=request.user
+          #  instance.save()
         return redirect("/Dashboard")
-    else:
-        return render(request,'addurl.html')
-   
+    
+      #  context={
+       #     'form': form,
+       # }
+        
+    return render(request,'addurl.html')
 
+def addheader(request, header_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+
+    if request.method == 'POST':
+        header_name = request.POST['header_name']
+        header_id = header_id
+       
+        
+        addingheader = userheader.objects.create(header_name=header_name, header_id=header_id)
+        addingheader.user=request.user
+        addingheader.save();
+        return redirect("/Dashboard")
+    
+    return render(request,'addheader.html')
    
-def editurl(request, table_id):
-    table_id = table_id
-    linktomain=userlinks.objects.all().filter(table_id=table_id)
+def transferlink(request):
+    
+    linktotitle=userheader.objects.all()
+
+    return render(request, 'transferlink.html',{'linktotitle':linktotitle})
+
+def editurl(request, pk):
+    pk=pk
+    linktomain=userlinks.objects.all().filter(pk=pk)
 
     return render(request, 'editurl.html',{'linktomain':linktomain})
 
-def edittitle(request, header_id):
-    header_id=header_id
-    linktotitle=userheader.objects.all().filter(header_id=header_id)
+def edittitle(request, pk):
+    pk=pk
+    linktotitle=userheader.objects.all().filter(pk=pk)
 
     return render(request, 'edittitle.html',{'linktotitle':linktotitle})
-
-def new_title(request):
-    form = userheaderForm(request.POST or None)
-
-    if form.is_valid():
-        form.save()
-        
-    else:
-        form = userheaderForm()
-    context={
-        'form': form,
-    }
-    return render(request,'edittitle.html',context)
     
 
 def edit_title(request, pk):
@@ -94,8 +114,7 @@ def edit_title(request, pk):
 
     if request.method == "POST":
         form = userheaderForm(request.POST, instance=post)
-
-       
+      
         if form.is_valid():
             form.save()
             return redirect("/Dashboard")
@@ -107,35 +126,29 @@ def edit_title(request, pk):
     }
     return render(request,'edittitleform.html', context)
 
-def new_post(request):
-    form = userlinksForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
-        
-    else:
-        form = userlinksForm()
-    context={
-        'form': form,
-    }
-    return render(request,'editlink.html',context)
 
 def edit_url(request, pk):
     post = get_object_or_404(userlinks,pk=pk)
-
+    
     if request.method == "POST":
+        mainfavicon = request.POST['mainfavicon']
         form = userlinksForm(request.POST, instance=post)
-
-       
+        mainfaviconchange = userlinksForm("mainfavicon")
+        
+        
+        
         if form.is_valid():
             form.save()
-            return redirect("/Dashboard")
+        return redirect("/Dashboard")
     else:
         form = userlinksForm(instance=post)
     context={
         'form': form,
         'post': post,
+     
     }
+    
     return render(request,'editlink.html', context)
 
 
@@ -154,16 +167,26 @@ def delete_url(request, pk):
     }
     return render(request,'editlink.html', context)
 
-def edit_header(request, header_id):
+def edit_header(request, pk):
+    post = get_object_or_404(userheader,pk=pk)
+
     if request.method == 'POST':
-        header_name = request.POST['header_name']
-        header_id = header_id
+        header_name = request.POST['header_name']  
+        form = userheaderForm(request.POST, instance=post)
+        header_id = request.POST['header_id']
+       
         
-        addingheader = userheader.objects.create(header_name=header_name, header_id=header_id)
-        addingheader.save();
+        if form.is_valid():
+            form.save()
         return redirect("/Dashboard")
     else:
-        return render(request,'editheaders.html')
+        form = userheaderForm(instance=post)
+    context={
+        'form': form,
+        'post': post,
+     
+    }
+    return render(request,'editheaders.html',context)
     
 
 def login(request):
@@ -187,12 +210,13 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/Dashboard')
+            return redirect('login')
+            
     else:
         form = RegistrationForm()
 
-        args = {'form': form}
-        return render(request, 'register.html', args)
+    args = {'form': form}
+    return render(request, 'register.html', args)
 
 def profile(request):
     args = {'user': request.user}

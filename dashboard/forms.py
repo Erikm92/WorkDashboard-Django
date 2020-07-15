@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import userlinks, userheader
+from django.utils.translation import ugettext_lazy as _
 
 
 
@@ -9,13 +10,18 @@ class userlinksForm(forms.ModelForm):
     class Meta:
         model= userlinks
         fields =['main', 'mainname', 'mainfavicon','table_id']
+        labels = {
+            'main': _('URL'),
+            'mainname': _('Name'),
+            'mainfavicon': _('Favicon URL'),
+        }
         widgets = {
             'main': forms.TextInput(attrs={'class':'form-control'}),
             'mainname': forms.TextInput(attrs={'class':'form-control'}),
             'mainfavicon': forms.TextInput(attrs={'class':'form-control'}),
-            'table_id': forms.TextInput(attrs={'class':'form-control'})
-
+            'table_id': forms.TextInput(attrs={'class':'form-control'}),
         }
+        exclude = ('table_id',)
 class userheaderForm(forms.ModelForm):
     class Meta:
         model= userheader
@@ -23,13 +29,15 @@ class userheaderForm(forms.ModelForm):
         widgets = {
             'header_id': forms.TextInput(attrs={'class':'form-control'}),
             'header_name': forms.TextInput(attrs={'class':'form-control'}),
-            
-
         }
+        labels = {
+            'header_name': _('Header Name') 
+        }
+        exclude = ('header_id',)
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
 
-    class Meta:
+    class Meta(UserCreationForm.Meta):
         model = User
         fields = (
             'username',
