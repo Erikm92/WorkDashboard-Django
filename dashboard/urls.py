@@ -29,7 +29,10 @@ urlpatterns = [
     url(r'^change-password/$', views.change_password,  name="change_password"),
 
     #transfer the url form (edit or delete)
-    url(r'^transferlink/$', views.transferlink ,name="transferlink" ),
+    url(r'^transferlink/(?P<pk>\d+)/$', views.transferlink ,name="transferlink" ),
+
+    #transfer url save
+    url(r'^transfersave/(?P<pk>\d+)/$', views.transfersave,  name="transfersave"),
 
     #edit the url form (edit or delete)
     url(r'^editurl/(?P<pk>\d+)/$', views.editurl ,name="editurl" ),

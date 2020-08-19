@@ -47,28 +47,51 @@
 
 
 <!-- Trigger/Open The Modal -->
-
 <table class="table table-dark table-hover table-bordered">
 
     <thead class="thead-light">
     <tr>
         
         <th scope="col">Header Name</th>
+        <th scope="col">Url Name</th>
         <th scope="col">Transfer</th>
         <th scope="col">Cancel</th>
     </tr>
     <thead>
     <tbody>
-    {% for link in linktotitle %}
+   
         <tr>
-           
-            <td>{{link.header_name}}</td>
-            <td><a href="{% url 'transferlink' %}"><button class="btn btn-outline-secondary btn-color">Select</button></a></td>
+        
+
+  
+  
+  {% for link in linktomain %}
+ <!-- <form action="{% url 'transfersave' pk=link.pk %}" id=""  method="post">  --> 
+   <form action="" id=""  method="post">   
+      {% csrf_token %}   
+  <td> 
+
+ <select name="headerchange"class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="dropdown show">  
+  <option disabled="true" selected>Select Header</option>
+  
+  {% for result in linktotitle %} 
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  <option class="dropdown-item" value="{{result.header_id}}">{{result.header_name}}</option>
+  </div>
+  {% endfor %}
+
+ </div> 
+  </select>
+  </td>         
+            <td>{{link.mainname}}</td>
+            <td><button type="submit" value="" class="btn btn-outline-secondary btn-color">Transfer</button></td>
             <td><button onclick="location.href='/Dashboard'" id="cancel" class="btn btn-outline-secondary btn-color" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button></td>
 
         </tr>
-            
-    {% endfor %}
+        </form>
+     {% endfor %}        
+    
     </tbody>
 
     </table>

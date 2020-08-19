@@ -8,9 +8,9 @@ from django.conf import settings
 class userlinks(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True,  on_delete=models.CASCADE)
-    main = models.CharField (max_length=200,default='')
+    main = models.CharField (max_length=500,default='')#need to change to 500
     mainname = models.CharField (max_length=200,default='')
-    mainfavicon = models.CharField (max_length=200,default='')
+    mainfavicon = models.CharField (max_length=400,default='')
     table_id =  models.CharField (max_length=200,default='')
     
 

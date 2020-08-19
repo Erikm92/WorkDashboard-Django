@@ -68,7 +68,7 @@
             <td>{{link.mainname}}</td>
             <td>{{link.main}}</td>
             <td><a href="{% url 'editinglinks' pk=link.pk %}"><button class="btn btn-outline-secondary btn-color">Edit</button></a></td>
-            <td><a href="{% url 'transferlink' %}"><button class="btn btn-outline-secondary btn-color">Transfer</button></a></td>
+            <td><a href="{% url 'transferlink' pk=link.pk %}"><button class="btn btn-outline-secondary btn-color">Transfer</button></a></td>
             <td><a href="{% url 'deletelinks' pk=link.pk %}"><button class="btn btn-outline-secondary btn-color">Delete</button></a></td>
             <td><button onclick="location.href='/Dashboard'" id="cancel" class="btn btn-outline-secondary btn-color" type="button" tabindex="0" title="Cancel" aria-label="Cancel">Cancel</button></td>
 

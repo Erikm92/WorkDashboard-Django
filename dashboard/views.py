@@ -39,8 +39,9 @@ def addurl(request, table_id):
     
     if request.method == 'POST':
    #     form = userlinksForm(request.POST)
-        
    #     if form.is_valid():
+   #need to figure out the logic here for if form.is_valid();
+   #security risk
         mainname = request.POST['mainname']
         main = request.POST['main']
         mainfavicon = ""
@@ -90,11 +91,27 @@ def addheader(request, header_id):
     
     return render(request,'addheader.html')
    
-def transferlink(request):
+def transferlink(request, pk):
     
-    linktotitle=userheader.objects.all()
+    pk=pk
+    linktomain=userlinks.objects.all().filter(pk=pk)
+    linktotitle=userheader.objects.all().filter(user=request.user)
+    
 
-    return render(request, 'transferlink.html',{'linktotitle':linktotitle})
+    return render(request,'transferlink.html', {'linktotitle':linktotitle , 'linktomain':linktomain})
+
+
+def transfersave(request, pk):
+    post = get_object_or_404(userlinks, pk=pk, )
+    header_id=request.Get('headerchange')
+    if header_id == "header_2":
+        table_new_id= "table_2"
+        change_table_id=userlinks.objects.get(pk=pk)
+        change_table_id.table_id=table_new_id
+        change_table_id.save()
+
+    return redirect("/Dashboard")
+
 
 def editurl(request, pk):
     pk=pk
@@ -129,6 +146,7 @@ def edit_title(request, pk):
 
 
 def edit_url(request, pk):
+#look into why i am using mainfavicon request and change variable, don't lead to anything
     post = get_object_or_404(userlinks,pk=pk)
     
     if request.method == "POST":

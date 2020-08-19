@@ -73,7 +73,7 @@ body{
   -ms-flex: 1;
   flex: 1;
 }
-@media (min-width: 768px) {
+@media (min-width: 780px) {
   .flex-md-equal > * {
     -ms-flex: 1;
     flex: 1;
@@ -121,25 +121,20 @@ a:hover
 text-decoration: none;
 }
 
-
 .iconimage
 {
   height: 30px;
   width: 30px;
   
 }
-
-.row::after
-{
-content:"";
-display: table;
-clear: both;
+.bg-color{
+  background-color:rgb(53, 54, 58);
 }
 
 .column
 {
 float: left;
-background-color: rgba(128,128,128);
+background-color: #ADADAD;
 width: 27%;
 margin-left: 4%;
 margin-right: 2%;
@@ -148,44 +143,47 @@ margin-bottom: 1%;
 padding-top: 5%;
 padding-left:0%;
 padding-right: 0%; 
-border-radius: 19px 19px 19px 19px;
+border-radius: 15px 15px 15px 15px;
+cursor: pointer;
 
 }
+
+.column.selected{
+  transform: scale(1.02);
+  background-color:white;
+  border: 3px solid yellow;
+  
+
+}
+
 .column-header
 {
-
-
 margin-top: -2%;
-padding-bottom: 5%; 
-
-
+padding-bottom: 3%; 
 }
-.column-btn
-{
-float: left;
-background-color: rgba(128,128,128);
-width: 27%;
-margin-left: 4%;
-margin-right: 2%;
-margin-top: 1%;
-margin-bottom: 1%;
-padding-top: 3%;
-padding-left:0%;
-padding-right: 0%; 
-border-radius: 19px 19px 19px 19px;
 
-}
+
 .entirecolumn
 {
-  background-color: white;
+  background-color: #292929;
   width: 95%;
-  height: 490px; 
+  height: 600px; 
   margin:auto;
-  padding-top: 2%;
+  padding-top: 1%;
+  margin-bottom: 2%;
+}
+.entirecolumn::after
+{
+content:"";
+display: table;
+clear: both;
+}
+.row::after{
+  
 }
 .mainbox
 {
- height: 700px;
+ height: 750px;
 }
 .titleposition
 {
@@ -279,7 +277,7 @@ padding-bottom: 2%;
 
 /* If you don't want the footer to be responsive, remove these media queries */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
 	.footer-distributed .footer-left,
 	.footer-distributed .footer-right{
