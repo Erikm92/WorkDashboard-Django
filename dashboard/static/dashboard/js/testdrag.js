@@ -1,4 +1,6 @@
   
+
+
 const list_items = document.querySelectorAll('.column1');
 const lists = document.querySelectorAll('.entirecolumn1');
 
