@@ -52,14 +52,16 @@
         
         {% csrf_token %}
         
-
-        <h4>Enter Email:</h4>
+ <div class="settings">
+        <h4>Email:</h4>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input name= "username"  id="inputEmail" class="form-control" placeholder="*Email address/UserName" required>
 
-        <h4>Enter Password:</h4>
+        <h4>Password:</h4>
         <label for="inputPassword" class="sr-only" >Password</label>
         <input name= "password" type="password" id="inputPassword" class="form-control" placeholder="Password" oninvalid="this.setCustomValidity('Please Enter your Password')" oninput="setCustomValidity('')" required>
+       </div>
+
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me

@@ -18,6 +18,18 @@ def dashboard(request):
     linktotitle=userheader.objects.filter(user=request.user)
     linktoheader_1=userheader.objects.filter(header_id="header_1",user=request.user)
     link1=linktoheader_1.all()
+    totallinks1=userlinks.objects.filter(table_id="table_1",user=request.user)
+    totallinks2=userlinks.objects.filter(table_id="table_7",user=request.user)
+    totallinks3=userlinks.objects.filter(table_id="table_2",user=request.user)
+    totallinks4=userlinks.objects.filter(table_id="table_8",user=request.user)
+    totallinks5=userlinks.objects.filter(table_id="table_3",user=request.user)
+    totallinks6=userlinks.objects.filter(table_id="table_9",user=request.user)
+    totallinks7=userlinks.objects.filter(table_id="table_4",user=request.user)
+    totallinks8=userlinks.objects.filter(table_id="table_10",user=request.user)
+    totallinks9=userlinks.objects.filter(table_id="table_5",user=request.user)
+    totallinks10=userlinks.objects.filter(table_id="table_11",user=request.user)
+    totallinks11=userlinks.objects.filter(table_id="table_6",user=request.user)
+    totallinks12=userlinks.objects.filter(table_id="table_12",user=request.user)    
     linktoheader_2=userheader.objects.filter(header_id="header_2", user=request.user)
     link2=linktoheader_2.all()
     linktoheader_3=userheader.objects.filter(header_id="header_3",user=request.user)
@@ -30,7 +42,9 @@ def dashboard(request):
     link6=linktoheader_6.all()
 
     return render(request, 'Dashboard.html',{'linktomain':linktomain,'linktotitle':linktotitle,'link1':link1,
-    'link2':link2,'link3':link3,'link4':link4,'link5':link5,'link6':link6})
+    'link2':link2,'link3':link3,'link4':link4,'link5':link5,'link6':link6, 'totallinks1':totallinks1,'totallinks2':totallinks2,
+    'totallinks3':totallinks3,'totallinks4':totallinks4,'totallinks5':totallinks5,'totallinks6':totallinks6, 'totallinks7':totallinks7,
+     'totallinks8':totallinks8, 'totallinks9':totallinks9, 'totallinks10':totallinks10, 'totallinks11':totallinks11, 'totallinks12':totallinks12})
 #need to add user error for url
 
 def addurl(request, table_id):
@@ -59,7 +73,7 @@ def addurl(request, table_id):
                 if counter == 3:
                     for x in range(total_letters):
                         mainfavicon += charc[x]
-        faviconurl="https://www.google.com/s2/favicons?domain="+mainfavicon
+        faviconurl="https://www.google.com/s2/favicons?sz=32&domain_url="+mainfavicon
     #     
         addingurl = userlinks.objects.create(mainname=mainname, main=main, mainfavicon=faviconurl, table_id=table_id)
         addingurl.user=request.user

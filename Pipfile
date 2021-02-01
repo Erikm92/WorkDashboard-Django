@@ -10,6 +10,7 @@ django = "*"
 pylint = "*"
 pylint-django = "*"
 django-allauth = "*"
+gitpython = "*"
 
 [requires]
 python_version = "3.8.2"

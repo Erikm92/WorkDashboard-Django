@@ -14,9 +14,6 @@
 <link rel="stylesheet"  href="{% static 'dashboard/css/product.css'%}">
 <link rel="stylesheet"  href="{% static 'dashboard/css/dialog.css'%}">
 <script type="text/JavaScript" src="{% static 'dashboard/js/carousel.js'%}"></script> 
-<script type="text/JavaScript" src="{% static 'dashboard/js/editurls.js'%}"></script> 
-<script type="text/JavaScript" src="{% static 'dashboard/js/editheaders.js'%}"></script> 
-<script type="text/JavaScript" src="{% static 'dashboard/js/testdrag.js'%}" defer></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
@@ -68,8 +65,6 @@
        <a href="{% url 'addheader' header_id="header_1" %}" id="none" >
       <h2 class="btn-outline-secondary btn-color" id="lbl1">Add Header</h2>
       
- 
-      
       {% endif %} 
      
      {% endfor %}
@@ -93,33 +88,41 @@
 <div class="carousel-inner"> 
   
     <div class="carousel-item active">
-
     
     <div class="entirecolumn" id="items">
-     
+ 
+   
+
        {% for link in linktomain %}
    
     {% if link.table_id == "table_1"%}
    
- 
-    <div class="column" data-id="{{link.pk}}">
-
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
-
-      </div>
-      
-     {% endif %}
-      {% endfor %}   
+ <div class="tile" id="counter1">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_1"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
+
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>    
+   
+     {% endif %} 
+   
+      {% endfor %}   
+
+      {% if totallinks1.count < 16 %}
+ <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_1"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
+     
      <div class="carousel-caption d-none d-md-block">
     
     <h>Shortcut Slide 1</h>
@@ -137,23 +140,31 @@
     {% if link.table_id == "table_7"%}
    
  
-    <div class="column" data-id="{{link.pk}}">
+    <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
+      
+      {% if totallinks2.count < 16 %}
+ <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_7"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_7"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+   
  <div class="carousel-caption d-none d-md-block">
     
     <h>Shortcut Slide 2</h>
@@ -182,7 +193,7 @@
    <div class="column-header">
 
    {% if link2 %}
-     {% for link in link2  %}
+     {% for link in link2 %}
     
 
       {% if link.header_id == 'header_2'%}
@@ -219,7 +230,6 @@
 <div class="carousel-inner"> 
   
     <div class="carousel-item active">
-
     
     <div class="entirecolumn" id="items1">
      
@@ -228,23 +238,31 @@
     {% if link.table_id == "table_2"%}
    
  
-    <div class="column" data-id="{{link.pk}}">
+    <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_2"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+       {% if totallinks3.count < 16 %}
+ <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_2"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
+    
+      
 
      <div class="carousel-caption d-none d-md-block">
     
@@ -263,23 +281,31 @@
     {% if link.table_id == "table_8"%}
    
  
-    <div class="column" data-id="{{link.pk}}">
+    <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_8"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+      {% if totallinks4.count < 16 %}
+ <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_8"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
+    
+
  <div class="carousel-caption d-none d-md-block">
     
     <h>Shortcut Slide 2</h>
@@ -353,24 +379,30 @@
    
     {% if link.table_id == "table_3"%}
    
- 
-    <div class="column" data-id="{{link.pk}}">
+  <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_3"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+      {% if totallinks5.count < 16 %}
+<a class="tile" title="Add More" href="{% url 'addurl' table_id="table_3"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
+     
 
      <div class="carousel-caption d-none d-md-block">
     
@@ -389,23 +421,31 @@
     {% if link.table_id == "table_9"%}
    
  
-    <div class="column" data-id="{{link.pk}}">
+    <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_9"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+     {% if totallinks6.count < 16 %}
+<a class="tile" title="Add More" href="{% url 'addurl' table_id="table_9"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
+     
+
  <div class="carousel-caption d-none d-md-block">
     
     <h>Shortcut Slide 2</h>
@@ -483,25 +523,31 @@
    
     {% if link.table_id == "table_4"%}
    
- 
-    <div class="column" data-id="{{link.pk}}">
+  <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
-    
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_4"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
 
+     {% if totallinks7.count < 16 %}
+  <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_4"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
+    
+   
      <div class="carousel-caption d-none d-md-block">
     
     <h>Shortcut Slide 1</h>
@@ -519,23 +565,30 @@
     {% if link.table_id == "table_10"%}
    
  
-    <div class="column" data-id="{{link.pk}}">
-
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
-
-      </div>
-      
-     {% endif %}
-      {% endfor %}   
+    <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_10"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
+
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
+
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
+     {% endif %}
+      {% endfor %}  
+
+       {% if totallinks8.count < 16 %}
+   <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_10"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
+    
  <div class="carousel-caption d-none d-md-block">
     
     <h>Shortcut Slide 2</h>
@@ -610,24 +663,30 @@
    
     {% if link.table_id == "table_5"%}
    
- 
-    <div class="column" data-id="{{link.pk}}">
+  <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
+
+          {% if totallinks9.count < 16 %}
+       <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_5"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_5"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
 
      <div class="carousel-caption d-none d-md-block">
     
@@ -646,23 +705,30 @@
     {% if link.table_id == "table_11"%}
    
  
-    <div class="column" data-id="{{link.pk}}">
+   <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
+
+    {% if totallinks10.count < 16 %}
+        <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_11"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_11"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
  <div class="carousel-caption d-none d-md-block">
     
     <h>Shortcut Slide 2</h>
@@ -738,24 +804,32 @@
    
     {% if link.table_id == "table_6"%}
    
- 
-    <div class="column" data-id="{{link.pk}}">
+  <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
+
+        {% if totallinks11.count < 16 %}
+     <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_6"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
     
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_6"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+   
+      
 
      <div class="carousel-caption d-none d-md-block">
     
@@ -773,29 +847,35 @@
    
     {% if link.table_id == "table_12"%}
    
- 
-    <div class="column" data-id="{{link.pk}}">
+  <div class="tile">
+    <a title="{{link.mainname}}" href="{{link.main}}" target="_blank" data-id="{{link.pk}}">
+    
+   
+   <div class="tile-icon"><img draggable="false" src={{link.mainfavicon}}></div>
 
-       <a href="{{link.main}}"  target="_blank" ><img  class="iconimage" src={{link.mainfavicon}} >
-      <p class="textcolor">{{link.mainname}}</p>
-       <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn" class="md-menu" title="Edit shortcut" aria-label="Edit shortcut"></a>
-      </a>
+   <div class="tile-title title-ltr"><span>{{link.mainname}}</span></div></a>
 
-      </div>
-      
+   <a href="{% url 'editurl' pk=link.pk %}" id="myeditBtn">
+    <div id="actionMenuButton" class="icon-more-vert" title="More actions" tabindex="0" aria-disabled="false" role="button">
+         </div></a>
+
+   </div>
      {% endif %}
       {% endfor %}   
-    
-    <div class="column">
-       <a href="{% url 'addurl' table_id="table_12"%}" id="myBtn"><img class="iconimage" src="{% static 'dashboard/images/addmore.png'%}">
-      <p class="textcolor">Add More</p></a>
-        
-    </div>
+
+    {% if totallinks12.count < 16 %}
+    <a class="tile" title="Add More" href="{% url 'addurl' table_id="table_12"%}">
+   
+   <div class="tileicon-addmore"><img draggable="false" src="{% static 'dashboard/images/addmore.png'%}"></div>
+
+   <div class="tile-title title-ltr"><span>Add More</span></div></a>
+{% endif %}
+      
+ 
  <div class="carousel-caption d-none d-md-block">
     
     <h>Shortcut Slide 2</h>
-  </div>
-    
+  </div> 
   
        </div>
     </div>

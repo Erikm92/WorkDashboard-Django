@@ -63,17 +63,25 @@ body {
     border-top-right-radius: 0;
 }
 
-label {
-    display: block;
-    font-size: 1em;
-    margin-top: 1em;
+div.settings {
+    display:grid;
+    grid-template-columns: max-content max-content;
+    grid-gap:25px;
+    margin-left: 50px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+div.settings h4 { 
+text-align:right;
+
 }
 
- ::-webkit-input-placeholder {
+
+
+::-webkit-input-placeholder {
     color: #004080;
     font-size: 1em;
 }
-
 
 h3 {
     padding-top: 10px;
