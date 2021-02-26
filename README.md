@@ -1,9 +1,18 @@
 # WorkDashboard-Django
-implementing Django to the Dashboard
+		
+This is the repository that will show the integration with Django on the Work Dashboard
+Implementing Django framework to the Dashboard in order to create a web application
+Dashboard url: https://webdash.pythonanywhere.com/Dashboard/login/#
 
-This is the repository that will show integration with Django on the Work Dashboard
+# Please note:
+This is a personal project I am working on. All related work is done on my free time using my own equipment. 
+Purpose of this project is for creating a better bookmark solution as well as learning new tools and further develop my programming skills.
 
-Some of the new features are:
+## What is the Dashboard?
+
+Its a web application that allows the user to create an account and store bookmarks in a more organized manner.
+
+## Some of the features are:
 
 1. Add a new url
 2. Edit/Delete url
@@ -13,7 +22,7 @@ Some of the new features are:
 6. Slide feature within each column
 7. Sign in/Sign out form
 
-Currently working on:
+## Work in progress:
 
 1. Updating sign up form for users to create accounts
    1. This currently has to be done via admin portal
@@ -22,8 +31,5 @@ Currently working on:
 4. Updating CSS media sizes/column format
 5. Integrating Google sign in API
 6. Alternative option for finding better favicon image resolution.
-
-
-# Please note:
-This is a personal project I am working on. All related work is done on my free time using my own equipment. Purpose of this project is for creating a better bookmark solution as well as learning new tools and further develop my programming skills.
+	
 
