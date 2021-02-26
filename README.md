@@ -3,14 +3,27 @@ implementing Django to the Dashboard
 
 This is the repository that will show integration with Django on the Work Dashboard
 
-Currently testing out different views to loads saved urls from the database.
-Adding new features where users can do the following:
+Some of the new features are:
 
 1. Add a new url
 2. Edit/Delete url
+3. Update header names
+4. Shift icons from different locations within the column
+5. Update the favicon url to produce a custom icon
+6. Slide feature within each column
+7. Sign in/Sign out form
 
-Sign in has been intregated, user can also view profile details.
+Currently working on:
 
-All work has been done outside of the repository.
-Future work will include new updates on the repository itself.
+1. Updating sign up form for users to create accounts
+   1. This currently has to be done via admin portal
+2. User validation messages for errors.
+3. Migrating Database outside of sqlite
+4. Updating CSS media sizes/column format
+5. Integrating Google sign in API
+6. Alternative option for finding better favicon image resolution.
+
+
+# Please note:
+This is a personal project I am working on. All related work is done on my free time using my own equipment. Purpose of this project is for creating a better bookmark solution as well as learning new tools and further develop my programming skills.
 
