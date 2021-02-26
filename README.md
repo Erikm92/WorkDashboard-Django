@@ -1,10 +1,10 @@
 # WorkDashboard-Django
 		
-This is the repository that will show the integration with Django on the Work Dashboard
-Implementing Django framework to the Dashboard in order to create a web application
+This is the repository that will show the integration with Django on the Work Dashboard.
+Implementing Python Django framework to the Dashboard in order to create a web application
 Dashboard url: https://webdash.pythonanywhere.com/Dashboard/login/#
 
-# Please note:
+## Please note:
 This is a personal project I am working on. All related work is done on my free time using my own equipment. 
 Purpose of this project is for creating a better bookmark solution as well as learning new tools and further develop my programming skills.
 
